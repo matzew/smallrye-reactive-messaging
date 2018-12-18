@@ -18,7 +18,8 @@ public class MyCloudEventSource {
 
   @Outgoing("source")
   public Publisher<CloudEventMessage<String>> source() {
-    return Flowable.interval(1, TimeUnit.SECONDS)
+
+    return Flowable.interval(250, TimeUnit.MILLISECONDS)
       .observeOn(Schedulers.computation())
       .map(l -> new CloudEventMessageBuilder<String>()
         .id(UUID.randomUUID().toString())
